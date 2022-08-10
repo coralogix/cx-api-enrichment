@@ -27,11 +27,11 @@ message AddEnrichmentsResponse {
   repeated Enrichment created_enrichments = 1;
 }
 
-message RemoveEnrichmentsResponse {
+message RemoveEnrichmentsRequest {
   repeated google.protobuf.UInt32Value enrichment_ids = 1;
 }
 
-message RemoveEnrichmentsRequest {
+message RemoveEnrichmentsResponse {
   repeated Enrichment deleted_enrichments = 1;
 }
 
