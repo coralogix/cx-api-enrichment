@@ -44,7 +44,7 @@ message DeleteCustomEnrichmentTypeRequest {
 
 message DeleteCustomEnrichmentTypeResponse {
   string message = 1;
-  uint32 enrichment_id = 2;
+  uint32 custom_enrichment_id = 2;
 }
 
 service CustomEnrichmentTypeService {
