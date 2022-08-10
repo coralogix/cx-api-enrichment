@@ -6,6 +6,6 @@ message GetEnrichmentLimitResponse {
   uint32 limit = 1;
 }
 
-service EnrichmentSettings {
+service EnrichmentSettingsService {
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse);
 }
