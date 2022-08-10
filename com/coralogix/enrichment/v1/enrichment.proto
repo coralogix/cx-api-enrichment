@@ -6,12 +6,12 @@ import "google/protobuf/timestamp.proto";
 package com.coralogix.global_mapping.v1;
 
 message Enrichment {
-  google.protobuf.Int32Value id = 1;
-  google.protobuf.Int32Value companyId = 2;
-  google.protobuf.Int32Value enrichmentTypeId = 3;
+  uint32 id = 1;
+  uint32 companyId = 2;
+  uint32 enrichmentTypeId = 3;
   google.protobuf.Timestamp updatedAt = 4;
   google.protobuf.Timestamp createdAt = 5;
-  google.protobuf.BoolValue isDeleted = 6;
-  google.protobuf.Int32Value customEnrichmentId = 7;
-  google.protobuf.StringValue fieldName = 8;
+  bool deleted = 6;
+  uint32 customEnrichmentId = 7;
+  string fieldName = 8;
 }
