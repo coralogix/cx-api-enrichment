@@ -8,7 +8,6 @@ message GetCustomEnrichmentTypesRequest {}
 
 message GetCustomEnrichmentTypesResponse {
   repeated CustomEnrichmentType enrichment_types = 1;
-  uint32 limit = 2;
 }
 
 message CreateCustomEnrichmentTypeRequest {
