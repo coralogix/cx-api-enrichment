@@ -10,12 +10,16 @@ message GetCustomEnrichmentTypesResponse {
   repeated CustomEnrichmentType enrichment_types = 1;
 }
 
+message File {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.StringValue extension = 2;
+  google.protobuf.BytesValue content = 3;
+}
+
 message CreateCustomEnrichmentTypeRequest {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
-  google.protobuf.StringValue enrichment_file_extension = 3;
-  google.protobuf.StringValue enrichment_file_name = 4;
-  google.protobuf.BytesValue enrichment_file_content = 5;
+  File file = 4;
 }
 
 message CreateCustomEnrichmentTypeResponse {
@@ -27,9 +31,7 @@ message UpdateCustomEnrichmentTypeRequest {
   google.protobuf.UInt32Value custom_enrichment_id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
-  google.protobuf.StringValue enrichment_file_extension = 4;
-  google.protobuf.StringValue enrichment_file_name = 5;
-  google.protobuf.BytesValue enrichment_file_content = 6;
+  File file = 4;
 }
 
 message UpdateCustomEnrichmentTypeResponse {
