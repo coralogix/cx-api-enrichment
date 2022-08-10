@@ -4,23 +4,6 @@ import "com/coralogix/enrichment/v1/custom_enrichment_type.proto";
 
 package com.coralogix.global_mapping.v1;
 
-message CustomEnrichmentTypeRequestModel {
-  google.protobuf.StringValue name = 1;
-  google.protobuf.StringValue description = 2;
-  google.protobuf.StringValue s3_key = 3;
-}
-
-message GetUploadUrlRequest {
-  google.protobuf.StringValue file_name = 1;
-  google.protobuf.StringValue file_extension = 2;
-}
-
-message GetUploadUrlResponse {
-  string message = 1;
-  string url = 2;
-  string s3_key = 3;
-}
-
 message GetCustomEnrichmentTypesRequest {}
 
 message GetCustomEnrichmentTypesResponse {
@@ -31,7 +14,9 @@ message GetCustomEnrichmentTypesResponse {
 message CreateCustomEnrichmentTypeRequest {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
-  google.protobuf.StringValue s3_key = 3;
+  google.protobuf.StringValue enrichment_file_extension = 3;
+  google.protobuf.StringValue enrichment_file_name = 4;
+  google.protobuf.BytesValue enrichment_file_content = 5;
 }
 
 message CreateCustomEnrichmentTypeResponse {
@@ -40,10 +25,12 @@ message CreateCustomEnrichmentTypeResponse {
 }
 
 message UpdateCustomEnrichmentTypeRequest {
-  google.protobuf.StringValue custom_enrichment_id = 1;
+  google.protobuf.UInt32Value custom_enrichment_id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
-  google.protobuf.StringValue s3_key = 4;
+  google.protobuf.StringValue enrichment_file_extension = 4;
+  google.protobuf.StringValue enrichment_file_name = 5;
+  google.protobuf.BytesValue enrichment_file_content = 6;
 }
 
 message UpdateCustomEnrichmentTypeResponse {
@@ -52,7 +39,6 @@ message UpdateCustomEnrichmentTypeResponse {
 }
 
 message DeleteCustomEnrichmentTypeRequest {
-  google.protobuf.UInt32Value company_id = 1;
   google.protobuf.UInt32Value custom_enrichment_id = 2;
 }
 
@@ -62,7 +48,6 @@ message DeleteCustomEnrichmentTypeResponse {
 }
 
 service CustomEnrichmentTypeService {
-  rpc GetUploadUrl(GetUploadUrlRequest) returns (GetUploadUrlResponse);
   rpc GetCustomEnrichmentTypes(GetCustomEnrichmentTypesRequest) returns (GetCustomEnrichmentTypesResponse);
   rpc CreateCustomEnrichmentType(CreateCustomEnrichmentTypeRequest) returns (CreateCustomEnrichmentTypeResponse);
   rpc UpdateCustomEnrichmentType(UpdateCustomEnrichmentTypeRequest) returns (UpdateCustomEnrichmentTypeResponse);
