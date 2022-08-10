@@ -13,13 +13,10 @@ message EnrichmentRequestModel {
   }
 }
 
-message GetEnrichmentsRequest {
-
-}
+message GetEnrichmentsRequest {}
 
 message GetEnrichmentsResponse {
   repeated Enrichment enrichments = 1;
-  uint32 limit = 2;
 }
 
 message AddEnrichmentsRequest {

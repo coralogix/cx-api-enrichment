@@ -52,11 +52,13 @@ message UpdateCustomEnrichmentTypeResponse {
 }
 
 message DeleteCustomEnrichmentTypeRequest {
-
+  google.protobuf.UInt32Value company_id = 1;
+  google.protobuf.UInt32Value custom_enrichment_id = 2;
 }
 
 message DeleteCustomEnrichmentTypeResponse {
-
+  string message = 1;
+  uint32 enrichment_id = 2;
 }
 
 service CustomEnrichmentTypeService {
