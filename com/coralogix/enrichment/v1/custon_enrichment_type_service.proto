@@ -4,11 +4,11 @@ import "com/coralogix/enrichment/v1/custom_enrichment_type.proto";
 
 package com.coralogix.global_mapping.v1;
 
-message GetCustomEnrichmentRequest {
+message GetCustomEnrichmentTypeRequest {
   google.protobuf.UInt32Value id = 1;
 }
 
-message GetCustomEnrichmentResponse {
+message GetCustomEnrichmentTypeResponse {
   CustomEnrichmentType custom_enrichment = 1;
 }
 
@@ -57,7 +57,7 @@ message DeleteCustomEnrichmentTypeResponse {
 }
 
 service CustomEnrichmentTypeService {
-  rpc GetCustomEnrichmentType(GetCustomEnrichmentRequest) returns (GetCustomEnrichmentResponse);
+  rpc GetCustomEnrichmentType(GetCustomEnrichmentTypeRequest) returns (GetCustomEnrichmentTypeResponse);
   rpc GetCustomEnrichmentTypes(GetCustomEnrichmentTypesRequest) returns (GetCustomEnrichmentTypesResponse);
   rpc CreateCustomEnrichmentType(CreateCustomEnrichmentTypeRequest) returns (CreateCustomEnrichmentTypeResponse);
   rpc UpdateCustomEnrichmentType(UpdateCustomEnrichmentTypeRequest) returns (UpdateCustomEnrichmentTypeResponse);
