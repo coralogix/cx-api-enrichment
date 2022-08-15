@@ -2,10 +2,17 @@ syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
 
-package com.coralogix.global_mapping.v1;
+package com.coralogix.enrichment.v1;
 
 message EnrichmentType {
-  uint32 id = 1;
-  string name = 2;
-  string description = 3;
+  oneof enrichment {
+    BuiltInEnrichmentType built_in = 1;
+    google.protobuf.UInt32Value custom_enrichment_id = 2;
+  }
+}
+
+enum BuiltInEnrichmentType {
+  BUILT_IN_ENRICHMENT_UNKNOWN = 0;
+  SUSPICIOUS_IP = 1;
+  GEO_IP = 2;
 }
