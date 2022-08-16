@@ -7,7 +7,10 @@ package com.coralogix.enrichment.v1;
 message File {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue extension = 2;
-  google.protobuf.StringValue content = 3;
+  oneof content {
+    google.protobuf.StringValue textual = 3;
+    google.protobuf.BytesValue binary = 4;
+  }
 }
 
 message GetCustomEnrichmentRequest {
