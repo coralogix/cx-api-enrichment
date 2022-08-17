@@ -24,7 +24,7 @@ message GetCustomEnrichmentResponse {
 message GetCustomEnrichmentsRequest {}
 
 message GetCustomEnrichmentsResponse {
-  repeated CustomEnrichment enrichment_types = 1;
+  repeated CustomEnrichment custom_enrichments = 1;
 }
 
 message CreateCustomEnrichmentRequest {
