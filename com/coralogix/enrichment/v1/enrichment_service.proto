@@ -23,7 +23,7 @@ message AddEnrichmentsRequest {
 }
 
 message AddEnrichmentsResponse {
-  repeated Enrichment created_enrichments = 1;
+  repeated Enrichment enrichments = 1;
 }
 
 message RemoveEnrichmentsRequest {
@@ -31,7 +31,7 @@ message RemoveEnrichmentsRequest {
 }
 
 message RemoveEnrichmentsResponse {
-  repeated Enrichment deleted_enrichments = 1;
+  repeated Enrichment remaining_enrichments = 1;
 }
 
 service EnrichmentService {
