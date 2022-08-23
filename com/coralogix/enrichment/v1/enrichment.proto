@@ -6,6 +6,6 @@ package com.coralogix.enrichment.v1;
 
 message Enrichment {
   uint32 id = 1;
-  string fieldName = 2;
+  string field_name = 2;
   EnrichmentType enrichment_type = 3;
 }
