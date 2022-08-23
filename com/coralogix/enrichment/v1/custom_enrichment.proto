@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package com.coralogix.enrichment.v1;
+
+message CustomEnrichment {
+  uint32 id = 1;
+  string name = 3;
+  string description = 4;
+}

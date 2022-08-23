@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package com.coralogix.enrichment.v1;
+
+message EnrichmentType {
+  oneof enrichment {
+    BuiltInEnrichmentType built_in = 1;
+    google.protobuf.UInt32Value custom_enrichment_id = 2;
+  }
+}
+
+enum BuiltInEnrichmentType {
+  BUILT_IN_ENRICHMENT_TYPE_UNSPECIFIED = 0;
+  BUILT_IN_ENRICHMENT_TYPE_SUSPICIOUS_IP = 1;
+  BUILT_IN_ENRICHMENT_TYPE_GEO_IP = 2;
+}
