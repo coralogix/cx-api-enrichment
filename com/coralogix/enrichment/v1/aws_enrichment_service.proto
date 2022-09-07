@@ -2,11 +2,16 @@ syntax = "proto3";
 
 package com.coralogix.enrichment.v1;
 
-message GetSupportedResourceTypesRequest {}
-message GetSupportedResourceTypesResponse {
-  repeated string resource_types = 1;
+message GetSupportedAwsResourceTypesRequest {}
+message GetSupportedAwsResourceTypesResponse {
+  repeated SupportedAwsResourceType resource_types = 1;
+}
+
+message SupportedAwsResourceType {
+  string type = 1;
+  string display_name = 2;
 }
 
 service AwsEnrichmentService {
-  rpc GetSupportedResourceTypes(GetSupportedResourceTypesRequest) returns (GetSupportedResourceTypesResponse);
+  rpc GetSupportedResourceTypes(GetSupportedAwsResourceTypesRequest) returns (GetSupportedAwsResourceTypesResponse);
 }
