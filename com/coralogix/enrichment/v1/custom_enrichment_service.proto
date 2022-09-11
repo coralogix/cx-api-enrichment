@@ -1,6 +1,8 @@
 syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "com/coralogix/enrichment/v1/custom_enrichment.proto";
+import "com/coralogix/enrichment/v1/audit_log.proto";
+
 
 package com.coralogix.enrichment.v1;
 
@@ -60,9 +62,19 @@ message DeleteCustomEnrichmentResponse {
 }
 
 service CustomEnrichmentService {
-  rpc GetCustomEnrichment(GetCustomEnrichmentRequest) returns (GetCustomEnrichmentResponse);
-  rpc GetCustomEnrichments(GetCustomEnrichmentsRequest) returns (GetCustomEnrichmentsResponse);
-  rpc CreateCustomEnrichment(CreateCustomEnrichmentRequest) returns (CreateCustomEnrichmentResponse);
-  rpc UpdateCustomEnrichment(UpdateCustomEnrichmentRequest) returns (UpdateCustomEnrichmentResponse);
-  rpc DeleteCustomEnrichment(DeleteCustomEnrichmentRequest) returns (DeleteCustomEnrichmentResponse);
+  rpc GetCustomEnrichment(GetCustomEnrichmentRequest) returns (GetCustomEnrichmentResponse) {
+    option (audit_log_description).description = "Get custom enrichment by id";
+  };
+  rpc GetCustomEnrichments(GetCustomEnrichmentsRequest) returns (GetCustomEnrichmentsResponse) {
+    option (audit_log_description).description = "Get all custom enrichments";
+  };
+  rpc CreateCustomEnrichment(CreateCustomEnrichmentRequest) returns (CreateCustomEnrichmentResponse) {
+    option (audit_log_description).description = "Create custom enrichment";
+  };
+  rpc UpdateCustomEnrichment(UpdateCustomEnrichmentRequest) returns (UpdateCustomEnrichmentResponse) {
+    option (audit_log_description).description = "Update custom enrichment";
+  };
+  rpc DeleteCustomEnrichment(DeleteCustomEnrichmentRequest) returns (DeleteCustomEnrichmentResponse) {
+    option (audit_log_description).description = "Delete custom enrichment";
+  };
 }
