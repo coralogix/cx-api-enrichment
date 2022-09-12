@@ -1,5 +1,5 @@
 name: cx-api-enrichment
-CX_PRODUCT: apis
+CX_PRODUCT: log-processing
 deployable_type: library
 code_language: protobuf
 tests: true
