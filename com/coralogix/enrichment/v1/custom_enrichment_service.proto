@@ -37,7 +37,7 @@ message CreateCustomEnrichmentRequest {
 
 message CreateCustomEnrichmentResponse {
   string message = 1;
-  uint32 custom_enrichment_id = 2;
+  CustomEnrichment custom_enrichment = 2;
 }
 
 message UpdateCustomEnrichmentRequest {
@@ -49,7 +49,7 @@ message UpdateCustomEnrichmentRequest {
 
 message UpdateCustomEnrichmentResponse {
   string message = 1;
-  uint32 custom_enrichment_id = 2;
+  CustomEnrichment custom_enrichment = 2;
 }
 
 message DeleteCustomEnrichmentRequest {
