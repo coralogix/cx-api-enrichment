@@ -5,14 +5,22 @@ import "google/protobuf/wrappers.proto";
 package com.coralogix.enrichment.v1;
 
 message EnrichmentType {
-  oneof enrichment {
-    BuiltInEnrichmentType built_in = 1;
-    google.protobuf.UInt32Value custom_enrichment_id = 2;
+  oneof type {
+    GeoIpType geo_ip = 1;
+    SuspiciousIpType suspicious_ip = 2;
+    AwsType aws = 3;
+    CustomEnrichmentType custom_enrichment = 4;
   }
 }
 
-enum BuiltInEnrichmentType {
-  BUILT_IN_ENRICHMENT_TYPE_UNSPECIFIED = 0;
-  BUILT_IN_ENRICHMENT_TYPE_SUSPICIOUS_IP = 1;
-  BUILT_IN_ENRICHMENT_TYPE_GEO_IP = 2;
+message GeoIpType {}
+
+message SuspiciousIpType {}
+
+message AwsType {
+  google.protobuf.StringValue resource_type = 1;
+}
+
+message CustomEnrichmentType {
+  google.protobuf.UInt32Value id = 1;
 }
