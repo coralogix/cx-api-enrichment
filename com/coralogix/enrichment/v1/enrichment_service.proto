@@ -11,6 +11,7 @@ message GetEnrichmentLimitRequest {}
 
 message GetEnrichmentLimitResponse {
   uint32 limit = 1;
+  uint32 used = 2;
 }
 
 message GetEnrichmentsRequest {}
