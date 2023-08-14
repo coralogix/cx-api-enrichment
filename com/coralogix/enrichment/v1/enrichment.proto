@@ -9,5 +9,5 @@ message Enrichment {
   uint32 id = 1;
   string field_name = 2;
   EnrichmentType enrichment_type = 3;
-  google.protobuf.BoolValue is_internal = 4;
+  optional google.protobuf.BoolValue is_internal = 4;
 }
