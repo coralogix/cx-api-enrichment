@@ -6,6 +6,8 @@ import "com/coralogix/enrichment/v1/audit_log.proto";
 
 package com.coralogix.enrichment.v1;
 
+option go_package = "com/coralogixapis/enrichment/v1";
+
 message File {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue extension = 2;
