@@ -9,17 +9,36 @@ import "com/coralogix/enrichment/v1/enrichment_service.proto";
 package com.coralogix.enrichment.v1;
 
 
+message GetInternalEnrichmentsRequest {}
+
+message GetInternalEnrichmentsResponse {
+  repeated Enrichment enrichments = 1;
+}
+
+message AddInternalEnrichmentsRequest {
+  repeated EnrichmentRequestModel request_enrichments = 1;
+}
+
+message AddInternalEnrichmentsResponse {
+  repeated Enrichment enrichments = 1;
+}
+
+message RemoveInternalEnrichmentsRequest {
+  repeated google.protobuf.UInt32Value enrichment_ids = 1;
+}
+
+message RemoveInternalEnrichmentsResponse {
+  repeated Enrichment remaining_enrichments = 1;
+}
+
 service EnrichmentInternalService {
-  rpc GetEnrichments(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
-    option (audit_log_description).description = "Get enrichments";
+  rpc GetInternalEnrichmentsRequest(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
+    option (audit_log_description).description = "Get Internal enrichments";
   };
-  rpc AddEnrichments(AddEnrichmentsRequest) returns (AddEnrichmentsResponse) {
-    option (audit_log_description).description = "Add enrichments";
+  rpc AddInternalEnrichments(AddInternalEnrichmentsRequest) returns (AddInternalEnrichmentsResponse) {
+    option (audit_log_description).description = "Add Internal enrichments";
   };
-  rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
-    option (audit_log_description).description = "Delete enrichments";
-  };
-  rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
-    option (audit_log_description).description = "Get enrichments limit";
+  rpc RemoveInternalEnrichments(RemoveInternalEnrichmentsRequest) returns (RemoveInternalEnrichmentsResponse) {
+    option (audit_log_description).description = "Delete Internal enrichments";
   };
 }
