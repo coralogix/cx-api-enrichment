@@ -23,22 +23,11 @@ message AddInternalEnrichmentsResponse {
   repeated Enrichment enrichments = 1;
 }
 
-message RemoveInternalEnrichmentsRequest {
-  repeated google.protobuf.UInt32Value enrichment_ids = 1;
-}
-
-message RemoveInternalEnrichmentsResponse {
-  repeated Enrichment remaining_enrichments = 1;
-}
-
 service EnrichmentInternalService {
   rpc GetInternalEnrichments(GetInternalEnrichmentsRequest) returns (GetInternalEnrichmentsResponse) {
     option (audit_log_description).description = "Get Internal enrichments";
   };
   rpc AddInternalEnrichments(AddInternalEnrichmentsRequest) returns (AddInternalEnrichmentsResponse) {
     option (audit_log_description).description = "Add Internal enrichments";
-  };
-  rpc RemoveInternalEnrichments(RemoveInternalEnrichmentsRequest) returns (RemoveInternalEnrichmentsResponse) {
-    option (audit_log_description).description = "Delete Internal enrichments";
   };
 }
