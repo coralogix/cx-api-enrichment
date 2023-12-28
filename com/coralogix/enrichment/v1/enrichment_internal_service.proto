@@ -32,7 +32,7 @@ message RemoveInternalEnrichmentsResponse {
 }
 
 service EnrichmentInternalService {
-  rpc GetInternalEnrichmentsRequest(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
+  rpc GetInternalEnrichments(GetInternalEnrichmentsRequest) returns (GetInternalEnrichmentsResponse) {
     option (audit_log_description).description = "Get Internal enrichments";
   };
   rpc AddInternalEnrichments(AddInternalEnrichmentsRequest) returns (AddInternalEnrichmentsResponse) {
