@@ -9,4 +9,5 @@ message Enrichment {
   uint32 id = 1;
   string field_name = 2;
   EnrichmentType enrichment_type = 3;
+  string enriched_field_name = 4;
 }
