@@ -1,9 +1,11 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
 import "com/coralogix/enrichment/v1/enrichment.proto";
 import "com/coralogix/enrichment/v1/enrichment_request_model.proto";
 import "com/coralogix/enrichment/v1/audit_log.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 package com.coralogix.enrichment.v1;
 
@@ -17,6 +19,11 @@ message GetEnrichmentLimitResponse {
 message GetEnrichmentsRequest {}
 
 message GetEnrichmentsResponse {
+  option (com.coralogix.openapi.v1.message) = {
+    name: "EntrichmentCollection"
+    description: "Enrichments collection"
+  };
+
   repeated Enrichment enrichments = 1;
 }
 
@@ -37,16 +44,48 @@ message RemoveEnrichmentsResponse {
 }
 
 service EnrichmentService {
+  option (com.coralogix.openapi.v1.service) = {
+    description: "API to define, query, and manage your enrichments."
+    resource_name: "Enrichment"
+  };
+
   rpc GetEnrichments(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
     option (audit_log_description).description = "Get enrichments";
+    option (google.api.http) = {
+      get: "/v1/enrichments"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      datasource: true
+      description: "List all enrichments"
+    };
   };
   rpc AddEnrichments(AddEnrichmentsRequest) returns (AddEnrichmentsResponse) {
     option (audit_log_description).description = "Add enrichments";
+    option (google.api.http) = {
+      post: "/v1/enrichments/batch/create"
+      body: "*"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Add enrichments"
+    };
   };
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
     option (audit_log_description).description = "Delete enrichments";
+    option (google.api.http) = {
+      post: "/v1/enrichments/batch/delete"
+      body: "*"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Delete enrichments"
+    };
   };
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
     option (audit_log_description).description = "Get enrichments limit";
+    option (google.api.http) = {
+      get: "/v1/enrichments/limit"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Get enrichments limit"
+    };
   };
 }
