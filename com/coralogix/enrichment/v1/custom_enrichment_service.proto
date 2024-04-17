@@ -72,11 +72,7 @@ message SearchCustomEnrichmentDataRequest {
 }
 
 message SearchCustomEnrichmentDataResponse {
-  CustomEnrichment details = 1;
-  oneof content {
-    google.protobuf.StringValue textual = 2;
-    google.protobuf.BytesValue binary = 3;
-  }
+  repeated CustomEnrichmentData custom_enrichments_data = 1;
 }
 
 service CustomEnrichmentService {
