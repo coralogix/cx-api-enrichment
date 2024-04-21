@@ -64,7 +64,7 @@ message DeleteCustomEnrichmentResponse {
 message SearchCustomEnrichmentDataRequest {
   message SearchClause {
     oneof search_by {
-      google.protobuf.StringValue id = 1;
+      google.protobuf.UInt32Value id = 1;
       google.protobuf.StringValue name = 2;
     }
   }
