@@ -36,6 +36,44 @@ message RemoveEnrichmentsResponse {
   repeated Enrichment remaining_enrichments = 1;
 }
 
+message CreateEnrichmentRequest {
+  Enrichment enrichment = 1;
+}
+
+message ReplaceEnrichmentRequest {
+  Enrichment enrichment = 1;
+}
+
+message DeleteEnrichmentRequest {
+  google.protobuf.UInt32Value enrichment_id = 1;
+}
+
+message CreateEnrichmentResponse {}
+
+message DeleteEnrichmentResponse {}
+
+message EnrichmentExecutionRequest {
+  oneof request {
+    CreateEnrichmentRequest create = 1;
+    DeleteEnrichmentRequest delete = 2;
+  }
+}
+
+message EnrichmentExecutionResponse {
+  oneof response {
+      CreateEnrichmentResponse create = 1;
+      DeleteEnrichmentResponse delete = 2;
+    }
+}
+
+message AtomicBatchExecuteEnrichmentRequest {
+  repeated EnrichmentExecutionRequest requests = 1;
+}
+
+message AtomicBatchExecuteEnrichmentResponse {
+  repeated EnrichmentExecutionResponse matching_responses = 1;
+}
+
 service EnrichmentService {
   rpc GetEnrichments(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
     option (audit_log_description).description = "Get enrichments";
@@ -45,6 +83,9 @@ service EnrichmentService {
   };
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
     option (audit_log_description).description = "Delete enrichments";
+  };
+  rpc AtomicBatchExecuteEnrichment(AtomicBatchExecuteEnrichmentRequest) returns (AtomicBatchExecuteEnrichmentResponse) {
+    option (audit_log_description).description = "Atomic batch execute enrichment";
   };
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
     option (audit_log_description).description = "Get enrichments limit";
