@@ -31,16 +31,6 @@ message RemoveInternalEnrichmentsResponse {
   repeated Enrichment remaining_enrichments = 1;
 }
 
-// Deletes all enrichments of the given type and replaces them with the new ones
-message AtomicOverwriteInternalEnrichmentsRequest {
-  EnrichmentType enrichment_type = 1;
-  repeated EnrichmentFieldNames enrichments = 2;
-}
-
-message AtomicOverwriteInternalEnrichmentsResponse {
-  repeated Enrichment enrichments = 1;
-}
-
 service EnrichmentInternalService {
   rpc GetInternalEnrichments(GetInternalEnrichmentsRequest) returns (GetInternalEnrichmentsResponse) {
     option (audit_log_description).description = "Get Internal enrichments";
@@ -50,8 +40,5 @@ service EnrichmentInternalService {
   };
   rpc RemoveInternalEnrichments(RemoveInternalEnrichmentsRequest) returns (RemoveInternalEnrichmentsResponse) {
     option (audit_log_description).description = "Remove Internal enrichments";
-  };
-  rpc AtomicOverwriteInternalEnrichments(AtomicOverwriteInternalEnrichmentsRequest) returns (AtomicOverwriteInternalEnrichmentsResponse) {
-    option (audit_log_description).description = "Atomic overwrite enrichments";
   };
 }
