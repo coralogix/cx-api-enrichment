@@ -5,13 +5,16 @@ import "com/coralogix/openapi/v1/annotations.proto";
 
 package com.coralogix.enrichment.v1;
 
+// Enrichment resource model
 message Enrichment {
   option (com.coralogix.openapi.v1.message) = {
-    description: "Enrichment resource model"
     resource: true
   };
 
-  uint32 id = 1;
-  string field_name = 2;
+  // The enrichment ID
+  uint32 id = 1 [(com.coralogix.openapi.v1.field) = { example: "1" }];;
+  // The enrichment field name
+  string field_name = 2 [(com.coralogix.openapi.v1.field) = { example: "\"sourceIPs\"" }];
+  // The enrichment type
   EnrichmentType enrichment_type = 3;
 }

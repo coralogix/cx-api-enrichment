@@ -1,26 +1,37 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 package com.coralogix.enrichment.v1;
 
+
+// The EnrichmentType is a union of all possible enrichment types
 message EnrichmentType {
   oneof type {
+    // The geo ip enrichment
     GeoIpType geo_ip = 1;
+    // The suspicious ip enrichment
     SuspiciousIpType suspicious_ip = 2;
-    AwsType aws = 3;
+    // The AWS enrichment
+    AwsType aws = 3 [(com.coralogix.openapi.v1.field) = {skip_in: [CLOUD_IBM]}];
+    // The custom enrichment
     CustomEnrichmentType custom_enrichment = 4;
   }
 }
 
+// The geo ip enrichment
 message GeoIpType {}
 
+// The suspicious ip enrichment
 message SuspiciousIpType {}
 
+// The AWS enrichment
 message AwsType {
-  google.protobuf.StringValue resource_type = 1;
+  google.protobuf.StringValue resource_type = 1 [(com.coralogix.openapi.v1.field) = { example: "\"ec2\"" }];
 }
 
+// The custom enrichment
 message CustomEnrichmentType {
-  google.protobuf.UInt32Value id = 1;
+  google.protobuf.UInt32Value id = 1 [(com.coralogix.openapi.v1.field) = { example: "1" }];
 }
