@@ -2,10 +2,14 @@ syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
 import "com/coralogix/enrichment/v1/enrichment_type.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 package com.coralogix.enrichment.v1;
 
+// The model use to create an enrichment
 message EnrichmentRequestModel {
-  google.protobuf.StringValue field_name = 1;
-  EnrichmentType enrichment_type = 2;
+  // The name of the field to enrich
+  google.protobuf.StringValue field_name = 1 [(com.coralogix.openapi.v1.field) = { example: "\"sourceIPs\"", required: true }];
+  // The type of the enrichment
+  EnrichmentType enrichment_type = 2 [(com.coralogix.openapi.v1.field) = { required: true }];
 }

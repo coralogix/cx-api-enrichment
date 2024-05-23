@@ -14,9 +14,9 @@ message GetEnrichmentLimitRequest {}
 // The enrichment limit
 message GetEnrichmentLimitResponse {
   // The limit of enrichments
-  uint32 limit = 1 [(com.coralogix.openapi.v1.field) = { example: "10" }];;
+  uint32 limit = 1 [(com.coralogix.openapi.v1.field) = { example: "10", required: true }];
   // The number of enrichments used
-  uint32 used = 2 [(com.coralogix.openapi.v1.field) = { example: "5" }];;
+  uint32 used = 2 [(com.coralogix.openapi.v1.field) = { example: "5", required: true }];
 }
 
 message GetEnrichmentsRequest {}
@@ -28,31 +28,31 @@ message GetEnrichmentsResponse {
   };
 
   // The enrichments
-  repeated Enrichment enrichments = 1;
+  repeated Enrichment enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true }];
 }
 
 // Add list of enrichments
 message AddEnrichmentsRequest {
   // The enrichments to add
-  repeated EnrichmentRequestModel request_enrichments = 1;
+  repeated EnrichmentRequestModel request_enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true }];
 }
 
 // The enrichments added
 message AddEnrichmentsResponse {
   // The enrichments added
-  repeated Enrichment enrichments = 1;
+  repeated Enrichment enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true }];
 }
 
 // Remove list of enrichments
 message RemoveEnrichmentsRequest {
   // The enrichments to remove
-  repeated google.protobuf.UInt32Value enrichment_ids = 1 [(com.coralogix.openapi.v1.field) = { example: "[1, 2, 3]" }];
+  repeated google.protobuf.UInt32Value enrichment_ids = 1 [(com.coralogix.openapi.v1.field) = { example: "[1, 2, 3]", required: true }];
 }
 
 // The enrichments removed
 message RemoveEnrichmentsResponse {
   // The enrichments removed
-  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { example: "[4, 5]" }];
+  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { example: "[4, 5]", required: true}];
 }
 
 service EnrichmentService {

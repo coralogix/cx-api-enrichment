@@ -12,9 +12,9 @@ message Enrichment {
   };
 
   // The enrichment ID
-  uint32 id = 1 [(com.coralogix.openapi.v1.field) = { example: "1" }];;
+  uint32 id = 1 [(com.coralogix.openapi.v1.field) = { example: "1", required: true }];;
   // The enrichment field name
-  string field_name = 2 [(com.coralogix.openapi.v1.field) = { example: "\"sourceIPs\"" }];
+  string field_name = 2 [(com.coralogix.openapi.v1.field) = { example: "\"sourceIPs\"", required: true }];
   // The enrichment type
-  EnrichmentType enrichment_type = 3;
+  EnrichmentType enrichment_type = 3 [(com.coralogix.openapi.v1.field) = { required: true }];
 }
