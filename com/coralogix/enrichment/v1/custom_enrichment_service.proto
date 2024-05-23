@@ -61,6 +61,20 @@ message DeleteCustomEnrichmentResponse {
   uint32 custom_enrichment_id = 2;
 }
 
+message SearchCustomEnrichmentDataRequest {
+  message SearchClause {
+    oneof search_by {
+      google.protobuf.UInt32Value id = 1;
+      google.protobuf.StringValue name = 2;
+    }
+  }
+  repeated SearchClause search_clauses = 1;
+}
+
+message SearchCustomEnrichmentDataResponse {
+  repeated CustomEnrichmentData custom_enrichments_data = 1;
+}
+
 service CustomEnrichmentService {
   rpc GetCustomEnrichment(GetCustomEnrichmentRequest) returns (GetCustomEnrichmentResponse) {
     option (audit_log_description).description = "Get custom enrichment by id";
@@ -76,5 +90,8 @@ service CustomEnrichmentService {
   };
   rpc DeleteCustomEnrichment(DeleteCustomEnrichmentRequest) returns (DeleteCustomEnrichmentResponse) {
     option (audit_log_description).description = "Delete custom enrichment";
+  };
+  rpc SearchCustomEnrichmentData(SearchCustomEnrichmentDataRequest) returns (SearchCustomEnrichmentDataResponse) {
+    option (audit_log_description).description = "List custom enrichment data";
   };
 }
