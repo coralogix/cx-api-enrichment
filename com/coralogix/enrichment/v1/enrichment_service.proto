@@ -1,52 +1,109 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
 import "com/coralogix/enrichment/v1/enrichment.proto";
 import "com/coralogix/enrichment/v1/enrichment_request_model.proto";
 import "com/coralogix/enrichment/v1/audit_log.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 package com.coralogix.enrichment.v1;
 
 message GetEnrichmentLimitRequest {}
 
+// The enrichment limit
 message GetEnrichmentLimitResponse {
-  uint32 limit = 1;
-  uint32 used = 2;
+  // The limit of enrichments
+  uint32 limit = 1 [(com.coralogix.openapi.v1.field) = { example: "10" }];;
+  // The number of enrichments used
+  uint32 used = 2 [(com.coralogix.openapi.v1.field) = { example: "5" }];;
 }
 
 message GetEnrichmentsRequest {}
 
+// The enrichments collection
 message GetEnrichmentsResponse {
+  option (com.coralogix.openapi.v1.message) = {
+    name: "EntrichmentCollection"
+  };
+
+  // The enrichments
   repeated Enrichment enrichments = 1;
 }
 
+// Add list of enrichments
 message AddEnrichmentsRequest {
+  // The enrichments to add
   repeated EnrichmentRequestModel request_enrichments = 1;
 }
 
+// The enrichments added
 message AddEnrichmentsResponse {
+  // The enrichments added
   repeated Enrichment enrichments = 1;
 }
 
+// Remove list of enrichments
 message RemoveEnrichmentsRequest {
-  repeated google.protobuf.UInt32Value enrichment_ids = 1;
+  // The enrichments to remove
+  repeated google.protobuf.UInt32Value enrichment_ids = 1 [(com.coralogix.openapi.v1.field) = { example: "[1, 2, 3]" }];
 }
 
+// The enrichments removed
 message RemoveEnrichmentsResponse {
-  repeated Enrichment remaining_enrichments = 1;
+  // The enrichments removed
+  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { example: "[4, 5]" }];
 }
 
 service EnrichmentService {
+  option (com.coralogix.openapi.v1.service) = {
+    description: "Create and manage enrichments"
+    resource_name: "Enrichment"
+  };
+
   rpc GetEnrichments(GetEnrichmentsRequest) returns (GetEnrichmentsResponse) {
     option (audit_log_description).description = "Get enrichments";
+    option (google.api.http) = {
+      get: "/v1/enrichments"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      datasource: true
+      description: "List all enrichments"
+      response_body_example: "{\"enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":23,\"field_name\":\"client_ip\",\"enrichment_type\":{\"suspicious_ip\":{}}},{\"id\":24,\"field_name\":\"phone_code\",\"enrichment_type\":{\"custom_enrichment\":{\"id\":17}}}]}"
+    };
   };
   rpc AddEnrichments(AddEnrichmentsRequest) returns (AddEnrichmentsResponse) {
     option (audit_log_description).description = "Add enrichments";
+    option (google.api.http) = {
+      post: "/v1/enrichments/batch/create"
+      body: "*"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Batch create enrichments"
+      request_body_example: "{\"request_enrichments\":[{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
+      response_body_example: "{\"enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
+    };
   };
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
     option (audit_log_description).description = "Delete enrichments";
+    option (google.api.http) = {
+      post: "/v1/enrichments/batch/delete"
+      body: "*"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Delete enrichments"
+      request_body_example: "{\"enrichment_ids\":[1, 2, 3]}"
+      response_body_example: "{\"remaining_enrichments\":[4, 5]}"
+    };
   };
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
     option (audit_log_description).description = "Get enrichments limit";
+    option (google.api.http) = {
+      get: "/v1/enrichments/limit"
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      description: "Get enrichments limit"
+      response_body_example: "{\"limit\":5,\"used\":5}"
+    };
   };
 }
