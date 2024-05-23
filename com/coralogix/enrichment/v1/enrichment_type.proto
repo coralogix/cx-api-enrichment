@@ -33,5 +33,6 @@ message AwsType {
 
 // The custom enrichment
 message CustomEnrichmentType {
+  // The id of the custom enrichment
   google.protobuf.UInt32Value id = 1 [(com.coralogix.openapi.v1.field) = { example: "1" }];
 }

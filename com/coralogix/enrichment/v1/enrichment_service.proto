@@ -52,7 +52,7 @@ message RemoveEnrichmentsRequest {
 // The enrichments removed
 message RemoveEnrichmentsResponse {
   // The enrichments removed
-  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { example: "[4, 5]", required: true}];
+  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true}];
 }
 
 service EnrichmentService {
