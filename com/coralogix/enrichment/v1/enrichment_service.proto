@@ -92,8 +92,8 @@ service EnrichmentService {
     };
     option (com.coralogix.openapi.v1.method) = {
       description: "Delete enrichments"
-      request_body_example: "{\"enrichment_ids\":[1, 2, 3]}"
-      response_body_example: "{\"remaining_enrichments\":[4, 5]}"
+      request_body_example: "{\"enrichment_ids\":[1, 2]}"
+      response_body_example: "{\"remaining_enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
     };
   };
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
