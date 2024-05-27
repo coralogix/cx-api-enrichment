@@ -44,7 +44,7 @@ message AtomicOverwriteEnrichmentsRequest {
 }
 
 message AtomicOverwriteEnrichmentsResponse {
-  repeated Enrichment enrichment_fields = 1;
+  repeated Enrichment enrichments = 1;
 }
 
 service EnrichmentService {
