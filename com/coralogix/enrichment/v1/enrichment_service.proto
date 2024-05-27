@@ -40,7 +40,7 @@ message RemoveEnrichmentsResponse {
 // Deletes all enrichments of the given type and replaces them with the new ones
 message AtomicOverwriteEnrichmentsRequest {
   EnrichmentType enrichment_type = 1;
-  repeated EnrichmentFieldNames enrichments = 2;
+  repeated EnrichmentFieldDefinition enrichments = 2;
 }
 
 message AtomicOverwriteEnrichmentsResponse {
