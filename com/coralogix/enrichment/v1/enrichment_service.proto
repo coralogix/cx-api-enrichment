@@ -57,6 +57,7 @@ message RemoveEnrichmentsResponse {
 
 service EnrichmentService {
   option (com.coralogix.openapi.v1.service) = {
+    name: "Enrichments"
     description: "Create and manage enrichments"
     resource_name: "Enrichment"
   };
