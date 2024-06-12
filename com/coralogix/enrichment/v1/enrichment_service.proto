@@ -34,7 +34,7 @@ message GetEnrichmentsResponse {
 // Add list of enrichments
 message AddEnrichmentsRequest {
   // The enrichments to add
-  repeated EnrichmentRequestModel request_enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true }];
+  repeated EnrichmentRequestModel request_enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true, name: "enrichments" }];
 }
 
 // The enrichments added
@@ -81,19 +81,18 @@ service EnrichmentService {
     };
     option (com.coralogix.openapi.v1.method) = {
       description: "Batch create enrichments"
-      request_body_example: "{\"request_enrichments\":[{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
+      request_body_example: "{\"enrichments\":[{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
       response_body_example: "{\"enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
     };
   };
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
     option (audit_log_description).description = "Delete enrichments";
     option (google.api.http) = {
-      delete: "/v1/enrichments/{id}"
-      body: "enrichment_ids"
+      delete: "/v1/enrichments/{enrichment_ids}"
     };
     option (com.coralogix.openapi.v1.method) = {
       description: "Delete enrichments"
-      response_body_example: "{\"remaining_enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
+      path_parameter_name: "id"
     };
   };
   rpc GetEnrichmentLimit(GetEnrichmentLimitRequest) returns (GetEnrichmentLimitResponse) {
