@@ -52,7 +52,7 @@ message RemoveEnrichmentsRequest {
 // The enrichments removed
 message RemoveEnrichmentsResponse {
   // The enrichments removed
-  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { required: true}];
+  repeated Enrichment remaining_enrichments = 1 [(com.coralogix.openapi.v1.field) = { skip_in: [CLOUD_IBM] }];
 }
 
 service EnrichmentService {
@@ -76,7 +76,7 @@ service EnrichmentService {
   rpc AddEnrichments(AddEnrichmentsRequest) returns (AddEnrichmentsResponse) {
     option (audit_log_description).description = "Add enrichments";
     option (google.api.http) = {
-      post: "/v1/enrichments/batch/create"
+      post: "/v1/enrichments"
       body: "*"
     };
     option (com.coralogix.openapi.v1.method) = {
@@ -88,12 +88,11 @@ service EnrichmentService {
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {
     option (audit_log_description).description = "Delete enrichments";
     option (google.api.http) = {
-      post: "/v1/enrichments/batch/delete"
-      body: "*"
+      delete: "/v1/enrichments/{id}"
+      body: "enrichment_ids"
     };
     option (com.coralogix.openapi.v1.method) = {
       description: "Delete enrichments"
-      request_body_example: "{\"enrichment_ids\":[1, 2]}"
       response_body_example: "{\"remaining_enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
     };
   };
@@ -101,10 +100,6 @@ service EnrichmentService {
     option (audit_log_description).description = "Get enrichments limit";
     option (google.api.http) = {
       get: "/v1/enrichments/limit"
-    };
-    option (com.coralogix.openapi.v1.method) = {
-      description: "Get enrichments limit"
-      response_body_example: "{\"limit\":5,\"used\":5}"
     };
   };
 }
