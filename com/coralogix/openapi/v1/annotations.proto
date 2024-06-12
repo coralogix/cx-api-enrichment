@@ -102,6 +102,7 @@ message FieldOpenAPI {
   bool identifier = 10;        // Indicates if the field is an identifier.
   string format = 11;          // Format of the field.
   repeated Cloud skip_in = 12; // List of clouds to skip this field in.
+  string schema = 13;          // Schema of the field. (Used when you want to use different schema than the one that will be generated from field type).
 }
 
 // Extending google.protobuf.FieldOptions to include FieldOpenAPI annotations.
