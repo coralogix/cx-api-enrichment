@@ -81,9 +81,12 @@ service EnrichmentService {
     };
     option (com.coralogix.openapi.v1.method) = {
       resource: true
-      description: "Batch create enrichments"
-      request_body_example: "{\"enrichments\":[{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
-      response_body_example: "{\"enrichments\":[{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}},{\"id\":6,\"field_name\":\"client_ip\",\"enrichment_type\":{\"geo_ip\":{}}}]}"
+      name: "CreateEnrichment"
+      description: "Create enrichments"
+      request_schema: "EnrichmentPrototype"
+      response_schema: "Enrichment"
+      request_body_example: "{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}}"
+      response_body_example: "{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}}"
     };
   };
   rpc RemoveEnrichments(RemoveEnrichmentsRequest) returns (RemoveEnrichmentsResponse) {

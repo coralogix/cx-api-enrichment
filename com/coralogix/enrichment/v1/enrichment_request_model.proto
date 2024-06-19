@@ -8,6 +8,7 @@ package com.coralogix.enrichment.v1;
 
 // The model use to create an enrichment
 message EnrichmentRequestModel {
+  option (com.coralogix.openapi.v1.message) = { name: "EnrichmentPrototype" };
   // The name of the field to enrich
   google.protobuf.StringValue field_name = 1 [(com.coralogix.openapi.v1.field) = { example: "\"sourceIPs\"", required: true }];
   // The type of the enrichment
