@@ -77,13 +77,12 @@ service EnrichmentService {
     option (audit_log_description).description = "Add enrichments";
     option (google.api.http) = {
       post: "/v1/enrichments"
-      body: "*"
+      body: "request_enrichments"
     };
     option (com.coralogix.openapi.v1.method) = {
       resource: true
       name: "CreateEnrichment"
       description: "Create an enrichment"
-      request_schema: "EnrichmentPrototype"
       response_schema: "Enrichment"
       request_body_example: "{\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}}"
       response_body_example: "{\"id\":3,\"field_name\":\"ip\",\"enrichment_type\":{\"geo_ip\":{}}}"
