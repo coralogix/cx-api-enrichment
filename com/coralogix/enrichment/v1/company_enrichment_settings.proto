@@ -1,0 +1,7 @@
+syntax = "proto3";
+package com.coralogix.enrichment.v1;
+
+message CompanyEnrichmentSettings {
+  uint64 size_limit_bytes = 2;
+  uint32 row_limit = 3;
+}
