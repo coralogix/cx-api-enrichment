@@ -4,6 +4,8 @@ import "google/protobuf/wrappers.proto";
 
 package com.coralogix.enrichment.v1;
 
+option go_package = "com/coralogixapis/enrichment/v1";
+
 message EnrichmentType {
   oneof type {
     GeoIpType geo_ip = 1;

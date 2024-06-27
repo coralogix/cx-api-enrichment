@@ -5,6 +5,8 @@ import "com/coralogix/enrichment/v1/enrichment_type.proto";
 
 package com.coralogix.enrichment.v1;
 
+option go_package = "com/coralogixapis/enrichment/v1";
+
 message Enrichment {
   uint32 id = 1;
   string field_name = 2;
