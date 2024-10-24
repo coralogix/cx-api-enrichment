@@ -1,0 +1,6 @@
+name = 'cx-api-enrichment'
+proto_out_dir = '.'
+
+[cx-api-common]
+url = 'github.com/coralogix/cx-api-common'
+revision = 'v1.0.6'

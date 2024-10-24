@@ -40,6 +40,7 @@ npm-debug.log
 testem.log
 /typings
 /coverage
+/com/coralogix/common
 yarn-error.log
 
 #System Files
